@@ -1,0 +1,103 @@
+import { BsLuggage } from "react-icons/bs";
+import { PiGiftLight, PiPizza } from "react-icons/pi";
+
+export const transactionsData = [
+    {
+        title: "Samose",
+        price: "₹50",
+        category: "food",
+        date: "2023-04-20",
+        icon: <PiPizza />,
+    },
+    {
+        title: "Flight Ticket",
+        price: "₹5000",
+        category: "travel",
+        date: "2023-05-10",
+        icon: <BsLuggage />,
+    },
+    {
+      title: "Birthday Gift",
+      price: "₹1500",
+      category: "entertainment",
+      date: "2023-06-15",
+      icon: <PiGiftLight />,
+    },
+    {
+      title: "Movie Tickets",
+      price: "₹300",
+      category: "entertainment",
+      date: "2023-07-12",
+      icon: <PiGiftLight />,
+    },
+    {
+      title: "Pizza",
+      price: "₹250",
+      category: "food",
+      date: "2023-08-08",
+      icon: <PiPizza />,
+    },
+    {
+      title: "Hotel Stay",
+      price: "₹4000",
+      category: "travel",
+      date: "2023-09-01",
+      icon: <BsLuggage />,
+    },
+    {
+      title: "Concert",
+      price: "₹2000",
+      category: "entertainment",
+      date: "2023-10-22",
+      icon: <PiGiftLight />,
+    },
+    {
+      title: "Burger",
+      price: "₹150",
+      category: "food",
+      date: "2023-11-30",
+      icon: <PiPizza />,
+    },
+    {
+      title: "Train Ticket",
+      price: "₹800",
+      category: "travel",
+      date: "2023-12-05",
+      icon: <BsLuggage />,
+    },
+    {
+      title: "Amusement Park",
+      price: "₹1200",
+      category: "entertainment",
+      date: "2024-01-14",
+      icon: <PiGiftLight />,
+    },
+    {
+      title: "Sushi",
+      price: "₹500",
+      category: "food",
+      date: "2024-02-20",
+      icon: <PiPizza />,
+    },
+    {
+      title: "Bus Ticket",
+      price: "₹100",
+      category: "travel",
+      date: "2024-03-28",
+      icon: <BsLuggage />,
+    },
+    {
+      title: "Theater Show",
+      price: "₹600",
+      category: "entertainment",
+      date: "2024-04-15",
+      icon: <PiGiftLight />,
+    },
+    {
+      title: "Pasta",
+      price: "₹300",
+      category: "food",
+      date: "2024-05-10",
+      icon: <PiPizza />,
+    },
+]

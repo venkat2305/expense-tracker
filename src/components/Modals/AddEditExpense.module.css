@@ -1,0 +1,27 @@
+.AddEditExpenseContainer {
+  font-family: Open Sans, sans-serif;
+}
+
+select {
+  background-color: #fafafa;
+  border: none;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 1px 3px 5px gray;
+  outline: none;
+}
+
+.inputContainer {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 15px;
+}
+
+.inputContainer > button {
+  padding: 15px 19px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 1px 3px 5px gray;
+  text-align: center;
+}

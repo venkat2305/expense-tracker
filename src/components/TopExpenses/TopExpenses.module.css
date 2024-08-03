@@ -1,0 +1,13 @@
+.TopExpensesContainer {
+}
+
+.TopExpensesContainer > h2 {
+  font-style: italic;
+  font-family: ubuntu, sans-serif;
+}
+
+.BarChartContainer {
+  background-color: white;
+  border-radius: 12px;
+  padding: auto;
+}

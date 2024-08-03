@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import SummmaryDashboard from './components/SummmaryDashboard/SummmaryDashboard';
+import RecentTransactions from './components/RecentTransactions/RecentTransactions';
+import TopExpenses from './components/TopExpenses/TopExpenses';
+
+import { transactionsData } from './data';
 
 function App() {
+  localStorage.setItem("balance", "4050")
+  localStorage.setItem("expenses", "500")
+  localStorage.setItem("transactions", JSON.stringify(transactionsData))
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Expense Tracker</h1>
+      <SummmaryDashboard />
+      <div style={{ display: "grid", gridTemplateColumns: "4fr 3fr", gap: "20px" }}>
+        <RecentTransactions />
+        <TopExpenses />
+      </div>
     </div>
   );
 }

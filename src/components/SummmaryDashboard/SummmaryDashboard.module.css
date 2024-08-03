@@ -1,0 +1,63 @@
+.summmaryDashboard {
+  display: flex;
+  justify-content: space-around;
+  background-color: #626262;
+  padding: 46px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+.infoCard {
+  background-color: #9b9b9b;
+  width: 350px;
+  height: 180px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: ubuntu, sans-serif;
+  gap: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.infoCard p {
+  font-size: 1.4rem;
+}
+
+.walletBalance {
+}
+
+.walletBalance > p > span {
+  color: #9dff5b;
+  font-weight: bold;
+}
+
+.walletBalance > button {
+  border: none;
+  background: linear-gradient(90deg, #b5dc52 0%, #89e148 100%);
+  padding: 7px 18px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.expenses {
+}
+
+.expenses > p > span {
+  color: #f4bb4a;
+  font-weight: bold;
+}
+
+.expenses > button {
+  border: none;
+  background: linear-gradient(90deg, #ff9595 0%, #ff4747 80%, #ff3838 100%);
+  padding: 7px 18px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
