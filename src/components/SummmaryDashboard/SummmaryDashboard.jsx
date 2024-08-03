@@ -3,6 +3,7 @@ import PieChartComponent from "../PieChart/PieChat";
 import AddBalance from "../Modals/AddBalnce";
 import { useState } from "react";
 import AddEditExpense from "../Modals/AddEditExpense";
+import { SnackbarProvider, enqueueSnackbar } from "notistack";
 
 function SummmaryDashboard() {
   const [openModal, setOpenModal] = useState("");
@@ -17,16 +18,17 @@ function SummmaryDashboard() {
 
   return (
     <div className={styles.summmaryDashboard}>
-      <AddBalance isOpen={openModal === "addIncome"} onClose={onClose} />
+      <SnackbarProvider />
+      <AddBalance
+        isOpen={openModal === "addIncome"}
+        onClose={onClose}
+        enqueueSnackbar={enqueueSnackbar}
+      />
       <AddEditExpense
         isOpen={openModal === "addExpense"}
         mode={"add"}
         onClose={onClose}
-      />
-      <AddEditExpense
-        isOpen={openModal === "editExpense"}
-        mode={"edit"}
-        onClose={onClose}
+        enqueueSnackbar={enqueueSnackbar}
       />
 
       <div className={`${styles.walletBalance} ${styles.infoCard}`}>

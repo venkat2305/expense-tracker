@@ -6,11 +6,15 @@ import deleteIcon from "../../assets/delete.png";
 import editIcon from "../../assets/edit.png";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
-import { transactionsData } from '../../data';
+import { transactionsData } from "../../data";
+import { SnackbarProvider, enqueueSnackbar } from "notistack";
+
+import AddEditExpense from "../Modals/AddEditExpense";
 
 function RecentTransactions() {
-
-  const [tryData,setTryData] = useState(()=>JSON.parse(localStorage.getItem("transactions")))
+  const [tryData, setTryData] = useState(() =>
+    JSON.parse(localStorage.getItem("transactions"))
+  );
   const [currentPage, setCurrentPage] = useState(0);
   const [currentPageData, setCurrentPageData] = useState([]);
   const [pageLimit, setPageLimit] = useState(3);
@@ -19,11 +23,25 @@ function RecentTransactions() {
     const start = currentPage * pageLimit;
     const end = start + pageLimit;
     setCurrentPageData(transactionsData?.slice(start, end));
-  }, [currentPage,tryData]);
+  }, [currentPage, tryData]);
+
+  const [openModal, setOpenModal] = useState("");
+
+  const handleOpen = (modal) => {
+    setOpenModal(modal);
+  };
+
+  const onClose = () => setOpenModal(false);
 
   return (
     <div className={styles.RecentTransactionContainer}>
       <h2>Recent Transactions</h2>
+      <AddEditExpense
+        isOpen={openModal === "editExpense"}
+        mode={"edit"}
+        onClose={onClose}
+        enqueueSnackbar={enqueueSnackbar}
+      />
       <div className={styles.transactionDataDiv}>
         {currentPageData.map((item) => (
           <>
@@ -53,6 +71,7 @@ function RecentTransactions() {
                     src={editIcon}
                     style={{ cursor: "pointer" }}
                     alt="edit-icon"
+                    onClick={() => handleOpen("editExpense")}
                   />
                 </div>
               </div>
@@ -70,7 +89,7 @@ function RecentTransactions() {
           >
             <FaArrowLeft />
           </div>
-          <div className={styles.currentPage}>{currentPage+1}</div>
+          <div className={styles.currentPage}>{currentPage + 1}</div>
           <div
             className={`${styles.icon} ${styles.arrow}`}
             onClick={() => setCurrentPage((prev) => prev + 1)}
