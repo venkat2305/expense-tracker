@@ -1,5 +1,5 @@
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
-import styles from './TopExpenses.module.css'
+import styles from "./TopExpenses.module.css";
 
 const data = [
   { category: "Entertainment", value: 90 },
@@ -9,7 +9,11 @@ const data = [
 
 const HorizontalBarChart = () => {
   return (
-    <ResponsiveContainer  width="100%" height={295} className={styles.BarChartContainer}>
+    <ResponsiveContainer
+      width="100%"
+      height={295}
+      className={styles.BarChartContainer}
+    >
       <BarChart
         layout="vertical"
         data={data}
@@ -33,11 +37,11 @@ const HorizontalBarChart = () => {
   );
 };
 
-function TopExpenses() {
+function TopExpenses({trData,setTrData}) {
   return (
     <div className={styles.TopExpensesContainer}>
       <h2>Top Expenses</h2>
-      <HorizontalBarChart/>
+      <HorizontalBarChart trData={trData} setTrData={setTrData} />
     </div>
   );
 }

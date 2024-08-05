@@ -5,7 +5,7 @@ import { useState } from "react";
 import AddEditExpense from "../Modals/AddEditExpense";
 import { SnackbarProvider, enqueueSnackbar } from "notistack";
 
-function SummmaryDashboard() {
+function SummmaryDashboard({trData,setTrData}) {
   const [openModal, setOpenModal] = useState("");
   const balance = localStorage.getItem("balance");
   const expenses = localStorage.getItem("expenses");
@@ -44,7 +44,7 @@ function SummmaryDashboard() {
         <button onClick={() => handleOpen("addExpense")}>+ Add Expense</button>
       </div>
       <div className="pie-chart">
-        <PieChartComponent />
+        <PieChartComponent trData={trData} setTrData={setTrData}/>
       </div>
     </div>
   );

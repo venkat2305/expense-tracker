@@ -11,27 +11,52 @@ import { SnackbarProvider, enqueueSnackbar } from "notistack";
 
 import AddEditExpense from "../Modals/AddEditExpense";
 
-function RecentTransactions() {
-  const [tryData, setTryData] = useState(() =>
-    JSON.parse(localStorage.getItem("transactions"))
-  );
+function RecentTransactions({trData,setTrData}) {
+  // const [tryData, setTryData] = useState(() =>
+  //   JSON.parse(localStorage.getItem("transactions"))
+  // );
+  // console.log(JSON.parse(localStorage.getItem("transactions")))
+  // console.log(transactionsData)
+  // const [tryData, setTryData] = useState(transactionsData);
   const [currentPage, setCurrentPage] = useState(0);
   const [currentPageData, setCurrentPageData] = useState([]);
   const [pageLimit, setPageLimit] = useState(3);
 
+  const categoryIcon = (category) => {
+    switch (category) {
+      case "travel":
+        return <BsLuggage />;
+      case "entertainment":
+        return <PiGiftLight />;
+      case "food":
+        return <PiPizza />
+    }
+  };
+
   useEffect(() => {
     const start = currentPage * pageLimit;
     const end = start + pageLimit;
-    setCurrentPageData(transactionsData?.slice(start, end));
-  }, [currentPage, tryData]);
+    setCurrentPageData(trData?.slice(start, end));
+  }, [currentPage, trData]);
 
   const [openModal, setOpenModal] = useState("");
 
-  const handleOpen = (modal) => {
+  const handleEdit = (modal, item) => {
     setOpenModal(modal);
+    // const updatedItem = n
+    // setTryData(prev => )
   };
 
   const onClose = () => setOpenModal(false);
+
+  const handleDelete = (item) => {
+    const newData = trData.filter((dataItem) => dataItem.title != item.title);
+    setTrData(newData);
+  };
+
+  useEffect(()=>{
+    localStorage.setItem("transactions",JSON.stringify(trData))
+  },[trData])
 
   return (
     <div className={styles.RecentTransactionContainer}>
@@ -49,7 +74,8 @@ function RecentTransactions() {
               <div
                 style={{ display: "flex", alignItems: "center", gap: "15px" }}
               >
-                <div className={styles.icon}>{item.icon}</div>
+                {/* <div className={styles.icon}>{item.icon}</div> */}
+                <div className={styles.icon}>{categoryIcon(item.category)}</div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <p>{item.title}</p>
                   <p style={{ color: "#9B9B9B" }}>{item.date}</p>
@@ -61,17 +87,23 @@ function RecentTransactions() {
                 <div style={{ color: "#F4BB4A", fontWeight: "bold" }}>
                   {item.price}
                 </div>
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    cursor: "pointer",
+                  }}
+                >
                   <img
                     src={deleteIcon}
-                    style={{ cursor: "pointer" }}
+                    // style={{ cursor: "pointer" }}
                     alt="delete-icon"
+                    onClick={() => handleDelete(item)}
                   />
                   <img
                     src={editIcon}
-                    style={{ cursor: "pointer" }}
                     alt="edit-icon"
-                    onClick={() => handleOpen("editExpense")}
+                    onClick={() => handleEdit("editExpense", item)}
                   />
                 </div>
               </div>
@@ -83,19 +115,24 @@ function RecentTransactions() {
           className={styles.paginationDiv}
           style={{ color: "black", margin: "0 auto" }}
         >
-          <div
+          <button
             className={`${styles.icon} ${styles.arrow}`}
             onClick={() => setCurrentPage((prev) => prev - 1)}
           >
             <FaArrowLeft />
-          </div>
-          <div className={styles.currentPage}>{currentPage + 1}</div>
-          <div
+          </button>
+          <button
+            style={{ border: "none", cursor: "pointer" }}
+            className={styles.currentPage}
+          >
+            {currentPage + 1}
+          </button>
+          <button
             className={`${styles.icon} ${styles.arrow}`}
             onClick={() => setCurrentPage((prev) => prev + 1)}
           >
             <FaArrowRight />
-          </div>
+          </button>
         </div>
       </div>
     </div>

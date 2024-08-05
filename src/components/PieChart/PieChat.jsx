@@ -1,12 +1,5 @@
 import { PieChart, Pie, Cell } from "recharts";
 
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 }
-];
-
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const RADIAN = Math.PI / 180;
@@ -17,7 +10,7 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   percent,
-  index
+  index,
 }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -35,7 +28,27 @@ const renderCustomizedLabel = ({
     </text>
   );
 };
-export default function PieChartComponent() {
+export default function PieChartComponent({ trData, setTrData }) {
+  console.log(
+    trData?.filter((currItem) => currItem.category === "entertainment").reduce((acc,currItem) => acc+parseInt(currItem.price),0)
+  );
+
+  // const etValue = trData.filter(currItem => currItem.category === "entertainment")
+  // .reduce((acc,currItem) => acc+parseInt(currItem.price),0)
+
+  // const foodValue = trData.filter(currItem => currItem.category === "food")
+  // .reduce((acc,currItem) => acc+parseInt(currItem.price),0)
+
+  // const travelValue = trData.filter(currItem => currItem.category === "travel")
+  // .reduce((acc,currItem) => acc+parseInt(currItem.price),0)
+
+  // console.log(etValue,foodValue,travelValue)
+
+  const data = [
+    { name: "Entertainment", value: 400 },
+    { name: "Food", value: 300 },
+    { name: "Travel", value: 300 },
+  ];
   return (
     <PieChart width={200} height={200}>
       <Pie
@@ -49,7 +62,10 @@ export default function PieChartComponent() {
         dataKey="value"
       >
         {data.map((entry, index) => (
-          <Cell key={`cell-${entry.name}`} fill={COLORS[index % COLORS.length]} />
+          <Cell
+            key={`cell-${entry.name}`}
+            fill={COLORS[index % COLORS.length]}
+          />
         ))}
       </Pie>
     </PieChart>
