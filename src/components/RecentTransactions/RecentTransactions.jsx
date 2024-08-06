@@ -11,7 +11,7 @@ import { SnackbarProvider, enqueueSnackbar } from "notistack";
 
 import AddEditExpense from "../Modals/AddEditExpense";
 
-function RecentTransactions({trData,setTrData}) {
+function RecentTransactions({ trData, setTrData }) {
   // const [tryData, setTryData] = useState(() =>
   //   JSON.parse(localStorage.getItem("transactions"))
   // );
@@ -22,6 +22,24 @@ function RecentTransactions({trData,setTrData}) {
   const [currentPageData, setCurrentPageData] = useState([]);
   const [pageLimit, setPageLimit] = useState(3);
 
+  const updatePageNumber = (type) => {
+    if (type === "increase") {
+      setCurrentPage((prev) => {
+        if (prev + 1 <= trData?.length / pageLimit) {
+          return prev + 1;
+        }
+        return prev;
+      });
+    } else if (type === "decrease") {
+      setCurrentPage((prev) => {
+        if (prev - 1 >= 0) {
+          return prev - 1;
+        }
+        return prev;
+      });
+    }
+  };
+
   const categoryIcon = (category) => {
     switch (category) {
       case "travel":
@@ -29,7 +47,7 @@ function RecentTransactions({trData,setTrData}) {
       case "entertainment":
         return <PiGiftLight />;
       case "food":
-        return <PiPizza />
+        return <PiPizza />;
     }
   };
 
@@ -54,9 +72,9 @@ function RecentTransactions({trData,setTrData}) {
     setTrData(newData);
   };
 
-  useEffect(()=>{
-    localStorage.setItem("transactions",JSON.stringify(trData))
-  },[trData])
+  useEffect(() => {
+    localStorage.setItem("transactions", JSON.stringify(trData));
+  }, [trData]);
 
   return (
     <div className={styles.RecentTransactionContainer}>
@@ -117,7 +135,8 @@ function RecentTransactions({trData,setTrData}) {
         >
           <button
             className={`${styles.icon} ${styles.arrow}`}
-            onClick={() => setCurrentPage((prev) => prev - 1)}
+            onClick={() => updatePageNumber("decrease")}
+            disabled={currentPage === 0}
           >
             <FaArrowLeft />
           </button>
@@ -129,7 +148,8 @@ function RecentTransactions({trData,setTrData}) {
           </button>
           <button
             className={`${styles.icon} ${styles.arrow}`}
-            onClick={() => setCurrentPage((prev) => prev + 1)}
+            onClick={() => updatePageNumber("increase")}
+            disabled={currentPage === Math.floor(trData.length/pageLimit)}
           >
             <FaArrowRight />
           </button>
